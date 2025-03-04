@@ -1,0 +1,95 @@
+/* Main Register Container */
+.register-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fef8f4; /* Light background color for the form */
+    border: 2px solid #e5e5e5;
+  }
+  
+  h2 {
+    color: #d32f2f; /* Red color for the title */
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #d32f2f; /* Red label color */
+    margin-bottom: 8px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #d32f2f; /* Red border on focus */
+  }
+  
+  .error {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+  }
+  
+  /* Button */
+  .submit-btn {
+    background-color: #d32f2f; /* Red button for submission */
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #b71c1c; /* Darker red on hover */
+  }
+  
+  .submit-btn:disabled {
+    background-color: #e57373; /* Lighter red when disabled */
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .register-container {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    .submit-btn {
+      font-size: 14px;
+    }
+  }
+  

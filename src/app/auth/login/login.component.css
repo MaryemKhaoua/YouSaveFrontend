@@ -1,0 +1,92 @@
+/* Main Container */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fef8f4; /* Light background color */
+    border: 2px solid #e5e5e5;
+  }
+  
+  h2 {
+    color: #d32f2f; /* Red color to match the blood donation theme */
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  input:focus {
+    border-color: #d32f2f; /* Focused border color */
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+  }
+  
+  /* Button */
+  .submit-btn {
+    background-color: #d32f2f; /* Matching red button */
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #b71c1c; /* Darker shade on hover */
+  }
+  
+  .submit-btn:disabled {
+    background-color: #e57373; /* Lighter red when disabled */
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .login-container {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    .submit-btn {
+      font-size: 14px;
+    }
+  }
+  
