@@ -30,7 +30,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
-          this.authService.setToken(response.token);
+          this.authService.setToken(response.accessToken);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {

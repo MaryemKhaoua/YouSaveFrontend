@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <!-- <app-sidebar></app-sidebar> -->
+  
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Statistics Cards -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <h3>Total Users</h3>
+          <p>{{ stats.userCount }}</p>
+                </div>
+        <div class="stat-card">
+          <h3>Total Cities</h3>
+          <p>{{ stats.cityCount }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Blood Types</h3>
+          <p>{{ stats.bloodTypeCount }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Banned Users</h3>
+          <p>{{ stats.bannedCount }}</p>
+        </div>
+      </div>
+  
+      <!-- Charts -->
+      <!-- <div class="charts-container">
+        <div class="chart">
+          <h3>User Distribution</h3>
+          <canvas id="pieChart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Statistics Overview</h3>
+          <canvas id="barChart"></canvas>
+        </div>
+      </div> -->
+  
+      <!-- Tables -->
+      <div class="tables-container">
+        <div class="table">
+          <h3>Users</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Data -->
+              <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>johnexample.com</td>
+                <td>
+                  <button class="btn-edit">Edit</button>
+                  <button class="btn-delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="table">
+          <h3>Cities</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>City Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Data -->
+              <tr>
+                <td>1</td>
+                <td>New York</td>
+                <td>
+                  <button class="btn-edit">Edit</button>
+                  <button class="btn-delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="table">
+          <h3>Blood Types</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Blood Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Data -->
+              <tr>
+                <td>1</td>
+                <td>A+</td>
+                <td>
+                  <button class="btn-edit">Edit</button>
+                  <button class="btn-delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
