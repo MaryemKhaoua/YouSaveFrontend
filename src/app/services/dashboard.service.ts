@@ -21,7 +21,7 @@ export class DashboardService {
     return this.http.get<DashboardStats>(`${this.apiUrl}/dashboard/stats`).pipe(
       catchError((error) => {
         console.error('Failed to fetch dashboard stats', error);
-        return of({ userCount: 0, cityCount: 0, bloodTypeCount: 0, bannedCount: 0 }); // Return default values on error
+        return of({ userCount: 0, cityCount: 0, bloodTypeCount: 0, bannedCount: 0 });
       })
     );
   }
@@ -30,7 +30,7 @@ export class DashboardService {
     return this.http.get<number>(`${this.apiUrl}/users/count`).pipe(
       catchError((error) => {
         console.error('Failed to fetch user count', error);
-        return of(0); // Return default value on error
+        return of(0);
       })
     );
   }
