@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,20 @@ export class AuthService {
   }
 
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.accessToken);
+        localStorage.setItem('role', response.role);
+        this.loggedIn.next(true);
+      })
+    );
   }
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.loggedIn.asObservable();
   }
 
   setToken(token: string): void {
@@ -35,16 +39,24 @@ export class AuthService {
     this.loggedIn.next(true);
   }
 
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
+
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  getUserFirstName(): string {
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
+  getRoleFromToken(): string | null {
     const token = this.getToken();
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.firstname;
+      return payload.role;
     }
-    return '';
+    return null;
   }
 }
