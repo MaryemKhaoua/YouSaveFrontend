@@ -1,0 +1,30 @@
+<div>
+    <app-navbar></app-navbar>
+
+    <div class="main-container">
+      <app-sidebar></app-sidebar>
+      <div class="content">
+        <h2 class="h2">Blood Types</h2>
+        <a routerLink="/blood/new" class="btn btn-danger">Add New Blood Type</a>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let blood of bloodTypes">
+              <td>{{ blood.id }}</td>
+              <td>{{ blood.type }}</td>
+              <td>
+                <a [routerLink]="['/blood/edit', blood.id]" class="btn btn-warning">Edit</a>
+                <button (click)="deleteBloodType(blood.id)" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
