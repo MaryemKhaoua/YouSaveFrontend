@@ -1,46 +1,35 @@
-<header class="navbar navbar-expand-lg navbar-white bg-white shadow sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="/" style="color: #FF204E;">
-        <span style="color: #A0153E;" class="nav-brand-two">You</span>Save
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/donors">List des donneurs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/news-feed">Fil d'actualité</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/about">A propos</a>
-          </li>
-          <ng-container *ngIf="!isLoggedIn; else loggedInMenu">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/register">Register</a>
-            </li>
-          </ng-container>
-          <ng-template #loggedInMenu>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- {{ authService.getUserFirstName() }} -->
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-                <li><a class="dropdown-item" routerLink="/dashboard">Dashboard</a></li>
-                <li><a class="dropdown-item" routerLink="/donors">List des donneurs</a></li>
-                <li><a class="dropdown-item" routerLink="/news-feed">Fil d'actualité</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
-              </ul>
-            </li>
-          </ng-template>
-        </ul>
-      </div>
-    </div>
-  </header>
+
+
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg shadow-sm">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="#">YouSave</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
