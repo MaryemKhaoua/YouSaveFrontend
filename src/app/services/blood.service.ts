@@ -12,6 +12,8 @@ interface BloodType {
 })
 export class BloodService {
   private apiUrl = '/api/blood-types';
+  private userCountsUrl = '/api/blood-types/user-counts';
+
 
   constructor(private http: HttpClient) {}
 
@@ -33,5 +35,9 @@ export class BloodService {
 
   deleteBloodType(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getUserCountsByBloodType(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(this.userCountsUrl);
   }
 }
