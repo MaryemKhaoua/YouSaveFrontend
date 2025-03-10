@@ -1,31 +1,68 @@
 <app-navbar></app-navbar>
 
-<div class="dashboard-container d-flex">
-  <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
+   <div class="dashboard-container d-flex">
+     <!-- Sidebar -->
+     <app-sidebar></app-sidebar>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <h2 class="mb-4">Admin Dashboard</h2>
-
-    <!-- Statistics Cards -->
-    <div class="stats-container">
-      <div class="stat-card">
-        <h3>Total Users</h3>
-        <p>{{ stats.userCount }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Banned Users</h3>
-        <p>{{ stats.bannedCount }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Blood Types</h3>
-        <p>{{ stats.bloodTypeCount }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Total Cities</h3>
-        <p>{{ stats.cityCount }}</p>
-      </div>
-    </div>
-  </div>
-</div>
+     <!-- Main Content -->
+     <div class="main-content">
+       <div class="container py-4">
+         <div class="d-flex justify-content-between align-items-center mb-4">
+           <div class="d-flex align-items-center">
+             <i class="fas fa-search text-muted mr-2"></i>
+             <input type="text" class="form-control border-0 border-bottom" placeholder="Search anything">
+           </div>
+           <div class="d-flex align-items-center">
+             <i class="fas fa-globe text-muted mx-2"></i>
+             <i class="fas fa-comments text-muted mx-2"></i>
+             <i class="fas fa-bell text-muted mx-2"></i>
+             <img src="https://storage.googleapis.com/a1aa/image/XQ1malGQ5uxIXGa-TT5EQSqUco0Q1AIOpe03-dMZaeM.jpg" alt="US Flag" class="rounded-circle" width="20" height="20">
+             <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center ml-2" style="width: 32px; height: 32px;">
+               IN
+             </div>
+           </div>
+         </div>
+         <div class="d-flex justify-content-between align-items-center mb-4">
+           <h1 class="h4 font-weight-bold">Blood Bank</h1>
+           <button class="btn btn-success">+ Add Donor/Group</button>
+         </div>
+         <div class="card">
+           <div class="card-header d-flex justify-content-between align-items-center">
+             <h2 class="h6 mb-0">Blood Group</h2>
+             <i class="fas fa-search text-muted"></i>
+           </div>
+           <div class="card-body p-0">
+             <table class="table mb-0">
+               <thead>
+                 <tr>
+                   <th scope="col">Group</th>
+                   <th scope="col">Numbers of types</th>
+                   <th scope="col">Status</th>
+                   <th scope="col">Actions</th>
+                 </tr>
+               </thead>
+               <tbody>
+                <tr *ngFor="let blood of bloodTypes">
+                  <td><input type="checkbox" class="mr-2">{{ blood.type }}</td>
+                  <td>{{ blood.amount }}</td>
+                  <td 
+                    [ngClass]="{
+                      'text-success': blood.status === 'Available',
+                      'text-warning': blood.status === 'Low',
+                      'text-danger': blood.status === 'Unavailable'
+                    }"
+                  >
+                    {{ blood.status }}
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" (click)="deleteBloodType(blood.id)">Delete</button>
+                  </td>
+                </tr>
+                
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
