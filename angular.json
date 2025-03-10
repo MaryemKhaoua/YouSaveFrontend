@@ -28,7 +28,9 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
             "scripts": [
               "node_modules/chart.js/dist/chart.umd.js"
