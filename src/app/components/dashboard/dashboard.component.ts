@@ -4,23 +4,79 @@ import { BloodService } from '../../services/blood.service';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, SidebarComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, SidebarComponent, FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   bloodTypes: any[] = [];
   userCounts: { [key: string]: number } = {};
+  newBlood = { type: '' };
+  selectedBloodType: any = { type: '' };
+
+  isModalOpen = false;
+  isUpdateFormOpen = false;
 
   constructor(private bloodService: BloodService) {}
 
   ngOnInit(): void {
     this.fetchBloodTypes();
     this.fetchUserCounts();
+  }
+
+  openModal(): void {
+    this.isModalOpen = true; 
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  openUpdateForm(blood: any): void {
+    console.log(blood);
+    this.selectedBloodType = { ...blood }; 
+    this.isUpdateFormOpen = true;
+  }
+  
+
+  closeUpdateForm(): void {
+    this.isUpdateFormOpen = false;
+  }
+
+  addBloodType(): void {
+    if (!this.newBlood.type) {
+      alert('Please provide a valid blood type.');
+      return;
+    }
+
+    this.bloodService.addBloodType(this.newBlood).subscribe({
+      next: () => {
+        this.fetchBloodTypes();
+        this.newBlood = { type: '' };
+        this.closeModal();
+      },
+      error: (err) => console.error('Failed to add blood type', err)
+    });
+  }
+
+  updateBloodType(): void {
+    if (!this.selectedBloodType.type) {
+      alert('Please provide a valid blood type.');
+      return;
+    }
+
+    this.bloodService.updateBloodType(this.selectedBloodType.id, { type: this.selectedBloodType.type }).subscribe({
+      next: () => {
+        this.fetchBloodTypes();
+        this.closeUpdateForm();
+      },
+      error: (err) => console.error('Failed to update blood type', err)
+    });
   }
 
   fetchBloodTypes(): void {
@@ -65,3 +121,4 @@ export class DashboardComponent implements OnInit {
     }
   }
 }
+
