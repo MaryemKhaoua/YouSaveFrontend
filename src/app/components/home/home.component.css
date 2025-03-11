@@ -1,0 +1,122 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.left-side, .right-side {
+    width: 100%;
+    max-width: 500px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons a.custom-button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #f12a2a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+    .buttons a.custom-button {
+        margin: 0 10px;
+    }
+}
+
+.buttons a.custom-button:hover {
+    background-color: #970707;
+}
+
+.benif {
+    text-align: center;
+    margin-top: 50px;
+    color: #670505;
+}
+
+#benif {
+    text-align: center;
+    font-size: 1em;
+}
+
+.benif-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.benif-icon {
+    margin-right: 20px;
+    font-size: 24px;
+    color: #28a745;
+}
+
+.benif-text {
+    flex-grow: 1;
+}
+
+@media screen and (min-width: 768px) {
+    .left-side, .right-side {
+        width: 48%;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.blood-group-column {
+    font-weight: bold;
+}
+
+.compatible-icon {
+    color: red;
+}
+
+.blood-type-shape {
+    width: 60px;
+    height: 60px;
+    border-radius: 100% 0% 100% 100%;
+    background-color: #fd2020;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.blood {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#btnL {
+    margin-top: 1em;
+    margin-left: 1em;
+}
