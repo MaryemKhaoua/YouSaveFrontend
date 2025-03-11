@@ -8,9 +8,10 @@
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #fef8f4; /* Light background color for the form */
+    background-color: #fef8f4; 
     border: 2px solid #e5e5e5;
   }
+  
   
   h2 {
     color: #d32f2f; /* Red color for the title */

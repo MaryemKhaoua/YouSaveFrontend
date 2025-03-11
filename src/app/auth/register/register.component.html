@@ -3,6 +3,7 @@
 <div class="register-container">
   <h2>Register for Blood Donation</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
     <div class="form-group">
       <label for="firstname">First Name:</label>
       <input id="firstname" formControlName="firstname" type="text" class="form-control" placeholder="Enter your first name">
@@ -48,6 +49,19 @@
       <input id="dateOfBirth" formControlName="dateOfBirth" type="date" class="form-control">
       <div class="error" *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
         Date of Birth is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" formControlName="gender" class="form-control">
+        <option value="" disabled selected>Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <div class="error" *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched">
+        Gender is required.
       </div>
     </div>
 
