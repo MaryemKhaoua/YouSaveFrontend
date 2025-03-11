@@ -5,12 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
-// import { FooterComponent } from "../../layout/footer/footer.component";
+import { FooterComponent } from "../../layout/footer/footer.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule, HttpClientModule, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, HttpClientModule, NavbarComponent, FooterComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
