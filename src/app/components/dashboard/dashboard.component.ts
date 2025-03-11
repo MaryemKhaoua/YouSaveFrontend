@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -113,12 +114,37 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteBloodType(id: number): void {
-    if (confirm('Are you sure you want to delete this blood type?')) {
-      this.bloodService.deleteBloodType(id).subscribe({
-        next: () => this.fetchBloodTypes(),
-        error: (err) => console.error('Failed to delete blood type', err)
-      });
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.bloodService.deleteBloodType(id).subscribe({
+          next: () => {
+            Swal.fire(
+              'Deleted!',
+              'Your blood type has been deleted.',
+              'success'
+            );
+            this.fetchBloodTypes();
+          },
+          error: (err) => {
+            console.error('Failed to delete blood type', err);
+            Swal.fire(
+              'Error!',
+              'There was an error deleting the blood type.',
+              'error'
+            );
+          }
+        });
+      }
+    });
   }
 }
 
