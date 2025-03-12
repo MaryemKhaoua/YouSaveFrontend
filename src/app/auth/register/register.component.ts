@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { FooterComponent } from "../../layout/footer/footer.component";
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule, HttpClientModule, NavbarComponent, FooterComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, HttpClientModule, NavbarComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -61,13 +62,20 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          console.log('Registration successful', response);
-          alert('Registration successful!');
-          this.router.navigate(['/login']);
+          Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            text: 'You can now log in to your account.',
+            confirmButtonColor: '#ae0505'
+          }).then(() => this.router.navigate(['/login']));
         },
         error: (error) => {
-          console.error('Registration failed', error);
-          alert('Registration failed. Please try again.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Registration Failed',
+            text: 'Please try again later.',
+            confirmButtonColor: '#ae0505'
+          });
         }
       });
     }
