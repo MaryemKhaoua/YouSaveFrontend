@@ -1,30 +1,120 @@
-<div>
-    <app-navbar></app-navbar>
+<app-navbar></app-navbar>
 
-    <div class="main-container">
-      <app-sidebar></app-sidebar>
-      <div class="content">
-        <h2 class="h2">Blood Types</h2>
-        <a routerLink="/blood/new" class="btn btn-danger">Add New Blood Type</a>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Type</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let blood of bloodTypes">
-              <td>{{ blood.id }}</td>
-              <td>{{ blood.type }}</td>
-              <td>
-                <a [routerLink]="['/blood/edit', blood.id]" class="btn btn-warning">Edit</a>
-                <button (click)="deleteBloodType(blood.id)" class="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+   <div class="dashboard-container d-flex">
+     <!-- Sidebar -->
+     <app-sidebar></app-sidebar>
+
+     <!-- Main Content -->
+     <div class="main-content">
+       <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-search text-muted mr-2"></i>
+            <input type="text" class="form-control border-0 border-bottom" placeholder="Search anything">
+          </div>
+<!-- Add Blood Type Modal -->
+<div class="modal fade" [ngClass]="{'show': isModalOpen}" tabindex="-1" aria-labelledby="addBloodModalLabel" aria-hidden="!isModalOpen" style="display: {{ isModalOpen ? 'block' : 'none' }};">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBloodModalLabel">Add Blood Type</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addBloodType()">
+          <div class="form-group">
+            <label for="bloodType">Blood Type</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="bloodType" 
+              [(ngModel)]="newBlood.type" 
+              name="bloodType" 
+              required>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
       </div>
     </div>
   </div>
+</div>
+
+<div class="ml-auto"> <!-- Use ml-auto to push the button to the right -->
+  <button class="btn btn-success" (click)="openModal()">Add Blood Type</button>
+</div>
+</div>
+<div class="mb-4"></div>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h2 class="h6 mb-0">Blood Group</h2>
+    <i class="fas fa-search text-muted"></i>
+  </div>
+  <div class="card-body p-0">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Group</th>
+          <th scope="col">Numbers of types</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let blood of bloodTypes">
+          <td><input type="checkbox" class="mr-2">{{ blood.type }}</td>
+          <td>{{ blood.amount }}</td>
+          <td 
+            [ngClass]="{
+              'text-success': blood.status === 'Available',
+              'text-warning': blood.status === 'Low',
+              'text-danger': blood.status === 'Unavailable'
+            }"
+          >
+            {{ blood.status }}
+          </td>
+          <td>
+            <span class="icon-delete" (click)="deleteBloodType(blood.id)">🗑️</span>
+            <span class="icon-edit" (click)="openUpdateForm(blood)">✏️</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Update Form Modal -->
+<!-- Update Blood Type Modal -->
+<div class="modal fade" [ngClass]="{'show': isUpdateFormOpen}" tabindex="-1" aria-labelledby="updateBloodModalLabel" aria-hidden="!isUpdateFormOpen" style="display: {{ isUpdateFormOpen ? 'block' : 'none' }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateBloodModalLabel">Update Blood Type</h5>
+        <button type="button" class="close" (click)="closeUpdateForm()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="updateBloodType()">
+          <div class="form-group">
+            <label for="bloodType">Blood Type</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="bloodType" 
+              [(ngModel)]="selectedBloodType.type" 
+              name="bloodType" 
+              required>
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+       </div>
+     </div>
+   </div>
