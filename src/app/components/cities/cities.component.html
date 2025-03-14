@@ -1,0 +1,131 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-container d-flex">
+  <app-sidebar></app-sidebar>
+
+  <div class="main-content">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-search text-muted mr-2"></i>
+          <input
+            type="text"
+            class="form-control border-0 border-bottom"
+            placeholder="Search cities"
+          />
+        </div>
+
+        <div class="ml-auto">
+          <button class="btn btn-success" (click)="openModal()">Add City</button>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h2 class="h6 mb-0">City List</h2>
+          <i class="fas fa-building text-muted"></i>
+        </div>
+        <div class="card-body p-0">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">City Name</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let city of cities$ | async">
+                <td><input type="checkbox" class="mr-2">{{ city.name }}</td>
+                <td>
+                    <span class="icon-delete" (click)="city.id !== undefined ? deleteCity(city.id) : null">🗑️</span>
+                    <span class="icon-edit" (click)="openUpdateForm(city)">✏️</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Add City Modal -->
+      <div
+        class="modal fade"
+        [ngClass]="{ 'show': isModalOpen }"
+        tabindex="-1"
+        aria-labelledby="addCityModalLabel"
+        aria-hidden="!isModalOpen"
+        style="display: {{ isModalOpen ? 'block' : 'none' }}"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addCityModalLabel">Add City</h5>
+              <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="addCity()">
+                <div class="form-group">
+                  <label for="cityName">City Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cityName"
+                    [(ngModel)]="newCity.name"
+                    name="cityName"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update City Modal -->
+      <div
+        class="modal fade"
+        [ngClass]="{ 'show': isUpdateFormOpen }"
+        tabindex="-1"
+        aria-labelledby="updateCityModalLabel"
+        aria-hidden="!isUpdateFormOpen"
+        style="display: {{ isUpdateFormOpen ? 'block' : 'none' }}"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateCityModalLabel">Update City</h5>
+              <button
+                type="button"
+                class="close"
+                (click)="closeUpdateForm()"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="selectedCity">
+              <form (ngSubmit)="updateCity()">
+                <div class="form-group">
+                  <label for="updatedCityName">City Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="updatedCityName"
+                    [(ngModel)]="selectedCity!.name"
+                    name="updatedCityName"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-success">Update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
