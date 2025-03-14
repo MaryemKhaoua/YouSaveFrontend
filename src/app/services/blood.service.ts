@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-interface BloodType {
-  id?: number;
-  type: string;
-}
+import { BloodType } from '../models/blood-type.model';
 
 @Injectable({
   providedIn: 'root'
