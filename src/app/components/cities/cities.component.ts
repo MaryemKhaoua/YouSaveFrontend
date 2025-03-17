@@ -9,6 +9,8 @@ import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
 import { selectFilteredCities } from '../../store/cities/city.reducer';
 import { CityActions } from '../../store/cities/city.actions';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-city',
@@ -57,11 +59,29 @@ export class CitiesComponent implements OnInit {
 
   addCity(): void {
     if (this.newCity.name.trim()) {
-      this.store.dispatch(CityActions.saveCity({ city: this.newCity }));
-      this.closeModal();
+      let existingCities: City[] = [];
+  
+      this.cities$.subscribe((cities) => {
+        existingCities = cities;
+      }).unsubscribe();
+  
+      const cityExists = existingCities.some(
+        (city) => city.name.toLowerCase() === this.newCity.name.toLowerCase()
+      );
+  
+      if (cityExists) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'City Already Exists',
+          text: `The city "${this.newCity.name}" already exists.`,
+          confirmButtonText: 'OK'
+        });
+      } else {
+        this.store.dispatch(CityActions.saveCity({ city: this.newCity }));
+        this.closeModal();
+      }
     }
   }
-
   updateCity(): void {
     if (this.selectedCity && this.selectedCity.name.trim()) {
       this.store.dispatch(CityActions.updateCity({ city: this.selectedCity }));
