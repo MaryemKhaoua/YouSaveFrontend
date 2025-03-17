@@ -51,10 +51,52 @@ export class BloodListComponent implements OnInit {
    }
  
    addBloodType(): void {
-     if (!this.newBlood.type) {
-       alert('Please provide a valid blood type.');
-       return;
-     }
+    if (!this.newBlood.type.trim()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Input',
+        text: 'Please provide a valid blood type.',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+  
+    const bloodTypeExists = this.bloodTypes.some(
+      (blood) => blood.type.toLowerCase() === this.newBlood.type.toLowerCase()
+    );
+  
+    if (bloodTypeExists) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Duplicate Blood Type',
+        text: `The blood type "${this.newBlood.type}" already exists.`,
+        confirmButtonText: 'OK'
+      });
+    } else {
+      this.bloodService.addBloodType(this.newBlood).subscribe({
+        next: () => {
+          this.fetchBloodTypes();
+          this.newBlood = { type: '' };
+          this.closeModal();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Blood type added successfully.',
+            confirmButtonText: 'OK'
+          });
+        },
+        error: (err) => {
+          console.error('Failed to add blood type', err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Failed to add blood type. Please try again.',
+            confirmButtonText: 'OK'
+          });
+        }
+      });
+    }
+  
  
      this.bloodService.addBloodType(this.newBlood).subscribe({
        next: () => {
