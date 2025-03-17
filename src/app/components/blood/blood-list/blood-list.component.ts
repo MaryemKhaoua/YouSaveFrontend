@@ -96,18 +96,8 @@ export class BloodListComponent implements OnInit {
         }
       });
     }
+  }
   
- 
-     this.bloodService.addBloodType(this.newBlood).subscribe({
-       next: () => {
-         this.fetchBloodTypes();
-         this.newBlood = { type: '' };
-         this.closeModal();
-       },
-       error: (err) => console.error('Failed to add blood type', err)
-     });
-   }
- 
    updateBloodType(): void {
      if (!this.selectedBloodType.type) {
        alert('Please provide a valid blood type.');
