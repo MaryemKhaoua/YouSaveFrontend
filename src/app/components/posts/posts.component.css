@@ -1,0 +1,41 @@
+
+body {
+    background-color: #ffffff; /* White background */
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    color: #cc0000; /* Dark red for headings */
+    font-weight: bold;
+}
+
+.form-group label {
+    color: #cc0000; /* Dark red for labels */
+    font-weight: bold;
+}
+
+.form-control {
+    border: 2px solid #cc0000; /* Dark red border for input fields */
+}
+
+.btn-primary {
+    background-color: #cc0000; /* Dark red for buttons */
+    border: none;
+}
+
+.post-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border: 2px solid #cc0000; /* Dark red border */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-card .actions a {
+    color: #cc0000; /* Red for action links */
+    text-decoration: none;
+    margin-right: 15px;
+}

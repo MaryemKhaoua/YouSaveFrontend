@@ -1,4 +1,3 @@
-<p>posts works!</p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,30 +195,36 @@
     <i class="fas fa-tint"></i>
     <i class="fas fa-tint"></i>
     <i class="fas fa-tint"></i>
-
 </div>
 
 <div class="container">
     <h1 class="text-center"><i class="fas fa-tint"></i> Create a New Post</h1>
-    <form id="postForm">
+    <form id="postForm" (ngSubmit)="savePost()">
         <div class="form-group">
             <label for="postContent"><i class="fas fa-edit"></i> Post Content</label>
-            <textarea class="form-control" id="postContent" rows="5" placeholder="Write your post content here..." required></textarea>
+            <textarea 
+                class="form-control" 
+                id="postContent" 
+                rows="5" 
+                placeholder="Write your post content here..." 
+                [(ngModel)]="newPostContent" 
+                name="postContent" 
+                required>
+            </textarea>
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Create Post</button>
     </form>
 
     <div id="posts" class="mt-5">
         <h2><i class="fas fa-list"></i> Posts</h2>
-        <!-- Posts will be dynamically added here -->
-        <div class="post-card">
-            <p>This is an example post about blood donation. Donate blood, save lives!</p>
-            <div class="actions">
-                <a href="#"><i class="fas fa-heart"></i> Like</a>
-                <a href="#"><i class="fas fa-comment"></i> Comment</a>
-                <a href="#"><i class="fas fa-share"></i> Share</a>
-            </div>
-        </div>
+        <!-- <div *ngIf="loading$ | async">Loading posts...</div>
+        <div *ngIf="error$ | async as error" class="text-danger">{{ error }}</div> -->
+        <ul>
+            <li *ngFor="let post of (posts$ | async)">
+                <p>{{ post.content }}</p>
+                <!-- <button (click)="deletePost(post.id)" class="btn btn-danger">Delete</button> -->
+            </li>
+        </ul>
     </div>
 </div>
 
