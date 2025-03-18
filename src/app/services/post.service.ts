@@ -28,6 +28,9 @@ export class PostService {
   }
 
   createPost(post: Post): Observable<Post> {
+
+    const postWithCreatedAt = { ...post, createdAt: post.createdAt || new Date() };
+
     const token = localStorage.getItem('token');
     if (token) {
       return this.http.post<Post>(this.apiUrl, post, {
@@ -40,22 +43,21 @@ export class PostService {
     }
   }
 
-  updatePost(id: number, post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.apiUrl}/${id}`, post).pipe(
-      catchError(this.handleError)
-    );
+  updatePost(post: Post): Observable<Post> {
+    // const postWithCreatedAt = { ...post, createdAt: post.createdAt };
+
+    if (post.id === undefined) {
+      throw new Error('Post ID is undefined');
+    }
+    return this.http.put<Post>(`${this.apiUrl}/${post.id}`, post);
   }
 
   deletePost(id: number): Observable<void> {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer ce post ?')) {
-      return new Observable<void>(observer => {
-        observer.complete();
-      });
-    }
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       catchError(this.handleError)
     );
-  }
+}
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Une erreur inconnue est survenue';

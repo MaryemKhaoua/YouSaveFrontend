@@ -19,49 +19,54 @@ const initialState: PostState = {
 };
 
 export const postFeature = createFeature({
-  name: 'postsFeatureKey',
-  reducer: createReducer(
-    initialState,
-
-    on(PostActions.loadPosts, (state) => ({
-      ...state,
-      loading: true,
-      error: null
-    })),
-
-    on(PostActions.loadPostsSuccess, (state, { posts }) => ({
-      ...state,
-      posts,
-      filteredPosts: posts,
-      loading: false,
-      error: null
-    })),
-
-    on(PostActions.loadPostsFailure, (state, { error }) => ({
-      ...state,
-      loading: false,
-      error
-    })),
-
-    on(PostActions.savePostSuccess, (state, { post }) => ({
+    name: 'postsFeatureKey',
+    reducer: createReducer(
+      initialState,
+  
+      on(PostActions.loadPosts, (state) => ({
         ...state,
-        posts: [...state.posts, post],
-        filteredPosts: [...state.filteredPosts, post]
+        loading: true,
+        error: null,
       })),
-
-    on(PostActions.updatePostSuccess, (state, { post }) => ({
-      ...state,
-      posts: state.posts.map(p => p.id === post.id ? post : p),
-      filteredPosts: state.filteredPosts.map(p => p.id === post.id ? post : p)
-    })),      
-
-    on(PostActions.deletePost, (state, { id }) => ({
-      ...state,
-      posts: state.posts.filter(post => post.id !== id),
-      filteredPosts: state.filteredPosts.filter(post => post.id !== id)
-    })),
-
-  )
-});
+  
+      on(PostActions.loadPostsSuccess, (state, { posts }) => {
+        return {
+          ...state,
+          posts,
+          filteredPosts: posts,
+          loading: false,
+          error: null,
+        };
+      }),
+  
+      on(PostActions.loadPostsFailure, (state, { error }) => ({
+        ...state,
+        loading: false,
+        error,
+      })),
+  
+      on(PostActions.savePostSuccess, (state, { post }) => {
+        return {
+          ...state,
+          posts: [...state.posts, post],
+          filteredPosts: [...state.filteredPosts, post],
+        };
+      }),
+  
+      on(PostActions.updatePostSuccess, (state, { post }) => {
+        return {
+          ...state,
+          posts: state.posts.map(p => (p.id === post.id ? post : p)),
+          filteredPosts: state.filteredPosts.map(p => (p.id === post.id ? post : p)),
+        };
+      }),
+  
+      on(PostActions.deletePost, (state, { id }) => ({
+        ...state,
+        posts: state.posts.filter(post => post.id !== id),
+        filteredPosts: state.filteredPosts.filter(post => post.id !== id),
+      }))
+    ),
+  });
 
 export const { name: postFeatureKey, reducer: postReducer, selectPosts, selectFilteredPosts, selectLoading, selectError } = postFeature;

@@ -3,4 +3,5 @@ export interface Post{
     content : string;
     createdBy: string; 
     profilePicture: string;
+    createdAt?: Date; 
 }
