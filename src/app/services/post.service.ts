@@ -39,7 +39,6 @@ export class PostService {
       throw new Error('No token found');
     }
   }
-  
 
   updatePost(id: number, post: Post): Observable<Post> {
     return this.http.put<Post>(`${this.apiUrl}/${id}`, post).pipe(
