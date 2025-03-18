@@ -45,14 +45,14 @@ export class RegisterComponent implements OnInit {
   }
 
   fetchCities() {
-    this.http.get('/api/cities').subscribe({
+    this.http.get('/api/cities/all').subscribe({
       next: (data: any) => this.cities = data,
       error: (err) => console.error('Failed to fetch cities', err)
     });
   }
 
   fetchBloodTypes() {
-    this.http.get('/api/blood-types').subscribe({
+    this.http.get('/api/blood-types/all').subscribe({
       next: (data: any) => this.bloodTypes = data,
       error: (err) => console.error('Failed to fetch blood types', err)
     });
