@@ -19,5 +19,7 @@
         'Delete Post': props<{ id: number }>(),
         'Delete Post Success': props<{ id: number }>(),
         'Delete Post Failure': props<{ error: string }>(),
+
+        
     }
     });
