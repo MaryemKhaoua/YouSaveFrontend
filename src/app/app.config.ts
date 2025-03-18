@@ -9,13 +9,18 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { cityReducer, cityFeatureKey } from './store/cities/city.reducer';
 import { CityEffects } from './store/cities/city.effects';
+import { postReducer, postFeatureKey } from './store/posts/post.reducer';
+import { PostEffects } from './store/posts/post.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideStore({ [cityFeatureKey]: cityReducer }), 
-    provideEffects([CityEffects]),
+    provideStore({
+      [cityFeatureKey]: cityReducer, 
+      [postFeatureKey]: postReducer,
+    }), 
+    provideEffects([CityEffects, PostEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-]
+  ]
 };

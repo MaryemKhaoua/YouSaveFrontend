@@ -1,192 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post - Blood Donation</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            background-color: #ffffff; /* White background */
-            font-family: 'Arial', sans-serif;
-            overflow: hidden; /* Prevent scrollbars from moving background */
-        }
-
-        .container {
-            margin-top: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            color: #cc0000; /* Dark red for headings */
-            font-weight: bold;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-        }
-
-        h2 {
-            color: #cc0000; /* Dark red for subheadings */
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-        }
-
-        .form-group label {
-            color: #cc0000; /* Dark red for labels */
-            font-weight: bold;
-        }
-
-        .form-control {
-            border: 2px solid #cc0000; /* Dark red border for input fields */
-            border-radius: 10px;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: #ff4d4d; /* Lighter red for focus state */
-            box-shadow: 0 0 10px rgba(204, 0, 0, 0.3); /* Red shadow */
-        }
-
-        .btn-primary {
-            background-color: #cc0000; /* Dark red for buttons */
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #ff4d4d; /* Lighter red on hover */
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        .post-card {
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            border: 2px solid #cc0000; /* Dark red border */
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-        }
-
-        .post-card p {
-            color: #333333; /* Dark gray for post content */
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .post-card .fa-heart {
-            color: #cc0000; /* Red heart icon */
-            margin-right: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .post-card .fa-heart:hover {
-            color: #ff4d4d; /* Lighter red on hover */
-        }
-
-        .post-card .fa-comment {
-            color: #cc0000; /* Red comment icon */
-            margin-right: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .post-card .fa-comment:hover {
-            color: #ff4d4d; /* Lighter red on hover */
-        }
-
-        .post-card .fa-share {
-            color: #cc0000; /* Red share icon */
-            margin-right: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .post-card .fa-share:hover {
-            color: #ff4d4d; /* Lighter red on hover */
-        }
-
-        .post-card .actions {
-            margin-top: 15px;
-        }
-
-        .post-card .actions a {
-            color: #cc0000; /* Red for action links */
-            text-decoration: none;
-            margin-right: 15px;
-            transition: color 0.3s ease;
-        }
-
-        .post-card .actions a:hover {
-            color: #ff4d4d; /* Lighter red on hover */
-        }
-
-        /* Moving blood drops in the background */
-        .background-drops {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none; /* Ensure clicks pass through to the content */
-        }
-
-        .background-drops .fa-tint {
-            position: absolute;
-            color: #cc0000; /* Red color for blood drops */
-            font-size: 40px;
-            animation: moveDrop 10s linear infinite;
-        }
-
-        @keyframes moveDrop {
-            0% { transform: translateY(-100px) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
-
-        /* Add multiple drops with different delays and sizes */
-        .background-drops .fa-tint:nth-child(1) {
-            left: 10%;
-            animation-delay: 0s;
-            font-size: 30px;
-        }
-
-        .background-drops .fa-tint:nth-child(2) {
-            left: 25%;
-            animation-delay: 2s;
-            font-size: 50px;
-        }
-
-        .background-drops .fa-tint:nth-child(3) {
-            left: 50%;
-            animation-delay: 4s;
-            font-size: 40px;
-        }
-
-        .background-drops .fa-tint:nth-child(4) {
-            left: 75%;
-            animation-delay: 6s;
-            font-size: 60px;
-        }
-
-        .background-drops .fa-tint:nth-child(5) {
-            left: 90%;
-            animation-delay: 8s;
-            font-size: 35px;
-        }
-    </style>
-</head>
-<body>
+<app-navbar></app-navbar>
 
 <!-- Moving blood drops in the background -->
 <div class="background-drops">
@@ -212,25 +24,31 @@
                 required>
             </textarea>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Create Post</button>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> {{ editingPost ? 'Update Post' : 'Create Post' }}
+        </button>
+        <button *ngIf="editingPost" type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
     </form>
 
     <div id="posts" class="mt-5">
         <h2><i class="fas fa-list"></i> Posts</h2>
-        <!-- <div *ngIf="loading$ | async">Loading posts...</div>
-        <div *ngIf="error$ | async as error" class="text-danger">{{ error }}</div> -->
-        <ul>
-            <li *ngFor="let post of (posts$ | async)">
-                <p>{{ post.content }}</p>
-                <!-- <button (click)="deletePost(post.id)" class="btn btn-danger">Delete</button> -->
-            </li>
-        </ul>
+        <div *ngFor="let post of (posts$ | async)" class="post-card">
+            <div class="post-header">
+              <img [src]="post.profilePicture || profilePictureUrl" alt="Profile Picture" class="profile-picture">
+              <strong>{{ post.createdBy }}</strong>
+            </div>
+            <p>{{ post.content }}</p>
+            <div class="actions">
+              <a href="#"><i class="fas fa-heart"></i> Like</a>
+              <a href="#"><i class="fas fa-comment"></i> Comment</a>
+              <a href="#"><i class="fas fa-share"></i> Share</a>
+              <button *ngIf="loggedInUser === post.createdBy" (click)="editPost(post)" class="btn btn-warning btn-sm">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button *ngIf="loggedInUser === post.createdBy" (click)="deletePost(post.id)" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </div>
+          </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</body>
-</html>

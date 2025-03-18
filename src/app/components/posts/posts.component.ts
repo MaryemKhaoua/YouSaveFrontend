@@ -1,33 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { NgIf, NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Post } from '../../models/post.model';
 import { PostActions } from '../../store/posts/post.actions';
-import { PostState, selectFilteredPosts } from '../../store/posts/post.reducer';
+import { AuthService } from '../../services/auth.service';
+import { selectFilteredPosts } from '../../store/posts/post.reducer';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
+import { NavbarComponent } from '../../layout/navbar/navbar.component';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [NgFor, FormsModule, CommonModule],
+  imports: [ FormsModule, CommonModule, NavbarComponent ],
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
   posts$: Observable<Post[]>;
-  // loading$: Observable<boolean>;
-  // error$: Observable<string | null>;
   newPostContent: string = '';
+  profilePictureUrl = 'https://cdn2.iconfinder.com/data/icons/circle-avatars-1/128/050_girl_avatar_profile_woman_suit_student_officer-512.png';
+  loggedInUser: string | null = null;
+  editingPost: Post | null = null;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private authService: AuthService) {
     this.posts$ = this.store.select(selectFilteredPosts);
-
   }
 
   ngOnInit(): void {
     this.loadPosts();
+    this.loggedInUser = this.authService.getUserName();
+    // console.log('Logged-in user:', this.loggedInUser);
   }
 
   loadPosts(): void {
@@ -37,14 +40,36 @@ export class PostsComponent implements OnInit {
   savePost(): void {
     if (this.newPostContent.trim()) {
       const newPost: Post = {
-        content: this.newPostContent
+        id: this.editingPost ? this.editingPost.id : Date.now(),
+        content: this.newPostContent,
+        createdBy: this.loggedInUser || 'Unknown',
+        profilePicture: this.profilePictureUrl
       };
-      this.store.dispatch(PostActions.savePost({ post: newPost }));
-      this.newPostContent = ''; 
+      if (this.editingPost) {
+        this.store.dispatch(PostActions.updatePost({ post: newPost }));
+      } else {
+        this.store.dispatch(PostActions.savePost({ post: newPost }));
+      }
+      this.newPostContent = '';
+      this.editingPost = null;
     }
   }
 
-  deletePost(id: number): void {
-    this.store.dispatch(PostActions.deletePost({ id }));
+  editPost(post: Post): void {
+    this.editingPost = post;
+    this.newPostContent = post.content;
+  }
+
+  deletePost(id: number | undefined): void {
+    if (id !== undefined) {
+      this.store.dispatch(PostActions.deletePost({ id }));
+    } else {
+      console.error('Post ID is undefined');
+    }
+  }
+
+  cancelEdit(): void {
+    this.editingPost = null;
+    this.newPostContent = '';
   }
 }

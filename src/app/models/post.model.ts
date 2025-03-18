@@ -1,4 +1,4 @@
-export interface post{
-    id? : number;
+export interface Post{
+    id ?: number;
     content : string;
 }
