@@ -14,7 +14,7 @@ export class BloodService {
   constructor(private http: HttpClient) {}
 
   getBloodTypes(): Observable<BloodType[]> {
-    return this.http.get<BloodType[]>(this.apiUrl);
+    return this.http.get<BloodType[]>(`${this.apiUrl}/all`);
   }
 
   getBloodTypeById(id: number): Observable<BloodType> {

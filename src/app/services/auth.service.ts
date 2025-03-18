@@ -24,7 +24,7 @@ export class AuthService {
         localStorage.setItem('role', response.role);
         this.loggedIn.next(true);
       })
-    );
+    );  
   }
 
   logout(): void {
