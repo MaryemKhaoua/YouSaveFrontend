@@ -1,3 +1,4 @@
+<!-- posts.component.html -->
 <app-navbar></app-navbar>
 
 <!-- Moving blood drops in the background -->
@@ -36,6 +37,7 @@
             <div class="post-header">
               <img [src]="post.profilePicture || profilePictureUrl" alt="Profile Picture" class="profile-picture">
               <strong>{{ post.createdBy }}</strong>
+              <span class="post-date">{{ formatDate(post.createdAt) }}</span>
             </div>
             <p>{{ post.content }}</p>
             <div class="actions">

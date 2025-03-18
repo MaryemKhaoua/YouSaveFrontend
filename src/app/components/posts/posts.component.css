@@ -196,3 +196,8 @@ h2 {
 .btn-sm {
     margin-left: 5px;
   }
+.post-date {
+    font-size: 0.8em;
+    color: #666;
+    margin-left: 10px;
+  }
