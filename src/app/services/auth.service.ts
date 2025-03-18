@@ -59,4 +59,19 @@ export class AuthService {
     }
     return null;
   }
+
+  getUserName(): string | null {
+    const token = this.getToken();
+    if (token) {
+      // console.log('my Token:', token);
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      // console.log('Token Payload:', payload);
+      const firstname = payload.firstname;
+      const lastname = payload.lastname;
+      // console.log('First Name:', firstname);
+      // console.log('Last Name:', lastname);
+      return `${firstname} ${lastname}`;
+    }
+    return null;
+  }
 }
