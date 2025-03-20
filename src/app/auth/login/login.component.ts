@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -32,13 +34,31 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
           this.authService.setToken(response.accessToken);
-          this.router.navigate(['/dashboard']);
+  
+          const userRole = response.role;
+          localStorage.setItem('userRole', userRole);
+  
+          if (userRole === 'ADMIN') {
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.router.navigate(['/home']);
+          }
         },
         error: (err) => {
           console.error('Login failed', err);
-          alert('Login failed. Please check your credentials.');
+  
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Incorrect email or password!',
+            footer: '<a href="/forgot-password">Forgot your password?</a>',
+            confirmButtonText: 'OK'
+          });
         }
       });
     }
   }
+  
+  
+  
 }
