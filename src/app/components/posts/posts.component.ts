@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../layout/navbar/navbar.component';
 import Swal from 'sweetalert2';
-import { format } from 'date-fns'; // Import the format function
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-posts',
