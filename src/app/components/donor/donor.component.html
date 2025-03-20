@@ -1,124 +1,53 @@
 <app-navbar></app-navbar>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouSave - Blood Donation</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Lottie Animation -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <!-- Custom CSS -->
-    <style>
-        body {
-            background: linear-gradient(135deg, #ffcece, #ff6070);
-            font-family: 'Arial', sans-serif;
-            color: white;
-        }
-        .header {
-            text-align: center;
-            padding: 50px 0;
-        }
-        .header h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        .header p {
-            font-size: 1.2rem;
-            color: #f8f9fa;
-        }
-        .donor-card {
-            margin: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            background: white;
-            opacity: 0; /* Start hidden for fade-in animation */
-            animation: fadeIn 0.8s ease forwards;
-        }
-        .donor-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-        .card-title {
-            color: #dc3545;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        .card-text {
-            color: #555;
-            font-size: 1rem;
-        }
-        .animation-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        lottie-player {
-            width: 100%;
-            height: 200px;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-            color: white;
-        }
-    </style>
-</head>
-<body>
 
+<body>
     <div class="header">
         <h1>YouSave</h1>
         <p>Join us in saving lives through blood donation.</p>
-      </div>
-      
-      <!-- Lottie Animation -->
-      <div class="animation-container">
-        <lottie-player
-          src="https://assets10.lottiefiles.com/packages/lf20_5tkzkblw.json"
-          background="transparent"
-          speed="1"
-          loop
-          autoplay>
-        </lottie-player>
-      </div>
-      
-      <!-- Display Fetched Users -->
-      <div class="container">
-        <div class="row">
-          <!-- User Card -->
-          <div class="col-md-4" *ngFor="let user of users">
-            <div class="card donor-card">
-              <div class="card-body">
-                <h5 class="card-title">{{ user.name }}</h5>
-                <p class="card-text"><strong>City:</strong> {{ user.city }}</p>
-                <p class="card-text"><strong>Blood Type:</strong> {{ user.bloodType }}</p>
-                <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Footer -->
-      <div class="footer">
-        <p>&copy; 2023 YouSave. All rights reserved.</p>
-      </div>
+    </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Filters Section -->
+    <div class="filter-section">
+        <div class="filter-inputs">
+            <input 
+                type="text" 
+                placeholder="Filter by City" 
+                [(ngModel)]="cityFilter"
+                class="form-control"
+            />
+            <input 
+                type="text" 
+                placeholder="Filter by Blood Type" 
+                [(ngModel)]="bloodTypeFilter"
+                class="form-control"
+            />
+        </div>
+    </div>
+
+          <!-- Lottie Animation -->
+          <div class="animation-container">
+            <lottie-player
+              src="https://assets10.lottiefiles.com/packages/lf20_5tkzkblw.json"
+              background="transparent"
+              speed="1"
+              loop
+              autoplay>
+            </lottie-player>
+          </div>
+
+    <!-- Display Filtered Users -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let user of filteredUsers">
+                <div class="card donor-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.name }}</h5>
+                        <p class="card-text"><strong>City:</strong> {{ user.city }}</p>
+                        <p class="card-text"><strong>Blood Type:</strong> {{ user.bloodType }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
