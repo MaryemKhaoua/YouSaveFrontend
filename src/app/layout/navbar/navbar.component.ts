@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   isLoggedIn = false;
+  isAdmin: boolean = false;
+
 
   constructor(protected authService: AuthService, private router: Router) {}
 
@@ -21,10 +23,13 @@ export class NavbarComponent {
     this.isLoggedIn = !!this.authService.getToken();
     this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
+      this.isAdmin = localStorage.getItem('userRole') === 'ADMIN';
+
     });
   }
 
   logout(): void {
     this.authService.logout();
+    localStorage.removeItem('userRole');
   }
 }
