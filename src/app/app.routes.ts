@@ -8,6 +8,7 @@
   import { HomeComponent } from './components/home/home.component';
   import { CitiesComponent } from './components/cities/cities.component';
   import { PostsComponent } from './components/posts/posts.component';
+import { DonorComponent } from './components/donor/donor.component';
 
   export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@
     { path: 'blood/edit/:id', component: BloodFormComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
     { path: 'cities', component: CitiesComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
     { path: 'posts', component: PostsComponent},
+    {path: 'donor', component: DonorComponent},
 
 
     { path: '**', redirectTo: '/home' }
