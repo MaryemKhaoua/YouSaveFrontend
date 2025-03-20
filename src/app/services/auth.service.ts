@@ -40,8 +40,13 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<boolean> {
+    const token = this.getToken();
+    if (token) {
+        this.loggedIn.next(true);
+    }
     return this.loggedIn.asObservable();
-  }
+}
+
 
   getToken(): string | null {
     return localStorage.getItem('token');
