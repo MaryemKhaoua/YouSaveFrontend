@@ -15,7 +15,10 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent {
   isLoggedIn = false;
 
-  constructor(protected authService: AuthService, private router: Router) {
+  constructor(protected authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.authService.getToken();
     this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
