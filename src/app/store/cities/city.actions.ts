@@ -19,5 +19,7 @@ export const CityActions = createActionGroup({
     'Delete City': props<{ id: number }>(),
     'Delete City Success': props<{ id: number }>(),
     'Delete City Failure': props<{ error: string }>(),
+
+
   }
 });
