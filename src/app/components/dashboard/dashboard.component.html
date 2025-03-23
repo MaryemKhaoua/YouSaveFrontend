@@ -1,6 +1,73 @@
 <app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
 
-  
-     <app-sidebar></app-sidebar>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Main Content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <h1 class="h2 mb-4">Blood Donation Statistics</h1>
 
- 
+      <!-- Statistics Cards -->
+      <div class="row">
+        <!-- Total Users Card -->
+        <div class="col-md-6 mb-4">
+          <div class="card bg-primary text-white">
+            <div class="card-body">
+              <h5 class="card-title">Total Users</h5>
+              <p class="card-text display-4">{{ totalUsers }}</p>
+              <p class="card-text">Registered donors and recipients</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Cities Card -->
+        <div class="col-md-6 mb-4">
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h5 class="card-title">Total Cities</h5>
+              <p class="card-text display-4"></p>
+              <p class="card-text">Cities participating in the program</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Blood Types Card -->
+        <div class="col-md-6 mb-4">
+          <div class="card bg-info text-white">
+            <div class="card-body">
+              <h5 class="card-title">Total Blood Types</h5>
+              <p class="card-text display-4"></p>
+              <p class="card-text">Different blood types available</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Banned Users Card -->
+        <div class="col-md-6 mb-4">
+          <div class="card bg-danger text-white">
+            <div class="card-body">
+              <h5 class="card-title">Total Banned Users</h5>
+              <p class="card-text display-4"></p>
+              <p class="card-text">Users banned from the platform</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts or Additional Data -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">User Distribution by City</h5>
+            </div>
+            <div class="card-body">
+              <!-- Add a chart or table here -->
+              <canvas id="userCityChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

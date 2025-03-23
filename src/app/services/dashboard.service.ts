@@ -17,14 +17,14 @@ export class DashboardService {
 
   constructor(private http: HttpClient) {}
 
-  getDashboardStats(): Observable<DashboardStats> {
-    return this.http.get<DashboardStats>(`${this.apiUrl}/dashboard/stats`).pipe(
-      catchError((error) => {
-        console.error('Failed to fetch dashboard stats', error);
-        return of({ userCount: 0, cityCount: 0, bloodTypeCount: 0, bannedCount: 0 });
-      })
-    );
-  }
+  // getDashboardStats(): Observable<DashboardStats> {
+  //   return this.http.get<DashboardStats>(`${this.apiUrl}/usres/count`).pipe(
+  //     catchError((error) => {
+  //       console.error('Failed to fetch dashboard stats', error);
+  //       return of({ userCount: 0, cityCount: 0, bloodTypeCount: 0, bannedCount: 0 });
+  //     })
+  //   );
+  // }
 
   getUserCount(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/users/count`).pipe(

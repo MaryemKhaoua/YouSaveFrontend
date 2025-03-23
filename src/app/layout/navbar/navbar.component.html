@@ -1,36 +1,36 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
-            <a class="navbar-brand font-weight-bold" href="/home">YouSave</a>
+            <a class="navbar-brand font-weight-bold" routerLink="/home">YouSave</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">Home</a>
+                        <a class="nav-link" routerLink="/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" routerLink="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" routerLink="#">Contact Us</a>
                     </li>
                     <li *ngIf="!isLoggedIn" class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" routerLink="/login">Login</a>
                     </li>
                     <li *ngIf="!isLoggedIn" class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" routerLink="/register">Register</a>
                     </li>
                     <li *ngIf="isLoggedIn" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle"  id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ authService.getUserName() }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="/profile">Profile</a>
-                            <a *ngIf="isAdmin" class="dropdown-item" href="/dashboard">Dashboard</a>
+                            <a class="dropdown-item" routerLink="/profile">Profile</a>
+                            <a *ngIf="isAdmin" class="dropdown-item" routerLink="/dashboard">Dashboard</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+                            <a class="dropdown-item" routerLink="/login" (click)="logout()">Logout</a>
                         </div>
                     </li>
                     
@@ -39,7 +39,8 @@
         </div>
     </nav>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
