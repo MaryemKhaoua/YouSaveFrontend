@@ -50,8 +50,7 @@ export class LoginComponent {
           Swal.fire({
             icon: 'warning',
             title: 'Oops...',
-            text: 'Incorrect email or password!',
-            footer: '<a href="/forgot-password">Forgot your password?</a>',
+            text: 'Incorrect email or password!Try Again',
             confirmButtonText: 'OK'
           });
         }

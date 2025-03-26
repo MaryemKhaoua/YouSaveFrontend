@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-container d-flex">
+
+  <div class="main-content">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-search text-muted mr-2"></i>
+          <input
+            type="text"
+            class="form-control border-0 border-bottom"
+            placeholder="Search users"
+          />
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h2 class="h6 mb-0">User List</h2>
+        </div>
+        <div class="card-body p-0">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let i = index">
+                <td>{{user.id}}</td>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let role of user.roles">{{ role }}</li>
+                  </ul>
+                </td>
+                <td>
+                  <span class="icon-edit" (click)="openRoleChangeModal(user)">✏️</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Change Role Modal -->
+
+<!-- Change Role Modal -->
+<div
+  class="modal fade"
+  [ngClass]="{ 'show': isRoleChangeModalOpen }"
+  tabindex="-1"
+  aria-labelledby="changeRoleModalLabel"
+  aria-hidden="!isRoleChangeModalOpen"
+  style="display: {{ isRoleChangeModalOpen ? 'block' : 'none' }}; background-color: rgba(0,0,0,0.5);"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeRoleModalLabel">
+          Change Role for {{ selectedUser?.firstname }} {{ selectedUser?.lastname }}
+        </h5>
+        <button type="button" class="close" (click)="closeRoleChangeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="selectedUser">
+        <form (ngSubmit)="updateUserRole()">
+            <div class="form-group">
+              <label for="roleSelect">Current Role: {{ selectedUser?.roles[0] }}</label>
+              <select class="form-control" id="roleSelect" [(ngModel)]="selectedRole" name="selectedRole" required>
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeRoleChangeModal()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+          
+          
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>

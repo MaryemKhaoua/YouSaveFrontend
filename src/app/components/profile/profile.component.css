@@ -1,0 +1,42 @@
+/* Custom Styles for the Profile Page */
+.form-profile {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card-body {
+    padding: 30px;
+    background-color: #f9f9f9;
+    background-image: url('https://www.transparenttextures.com/patterns/blood-cell.png');
+    background-size: 100% 100%;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  input.form-control, select.form-select {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+  }
+  
+  /* Center the spinner */
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+  

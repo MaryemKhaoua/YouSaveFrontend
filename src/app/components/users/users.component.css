@@ -1,0 +1,33 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  .navbar {
+    background-color: #e3342f;
+  }
+  .navbar a {
+    color: #fff !important;
+  }
+  .card-header {
+    background-color: #e3342f;
+    color: white;
+  }
+  .table thead {
+    background-color: #e3342f;
+    color: white;
+  }
+  .btn {
+    border-radius: 0.25rem;
+  }
+  .btn-danger {
+    background-color: #e3342f;
+    border-color: #e3342f;
+  }
+  .btn-warning {
+    background-color: #f59e0b;
+    border-color: #f59e0b;
+  }
+  .btn-success {
+    background-color: #38c172;
+    border-color: #38c172;
+  }

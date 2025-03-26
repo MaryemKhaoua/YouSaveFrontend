@@ -1,4 +1,3 @@
-import { Comment } from "./comment.model";
 
 export interface Post{
     id ?: number;
@@ -6,5 +5,4 @@ export interface Post{
     createdBy: string; 
     profilePicture: string;
     createdAt?: Date; 
-    comments?: Comment[];
 }

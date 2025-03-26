@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4" style="border-top: 5px solid #e63946;">
+    <div class="card-header" style="background-color: #8A0707; color: white; text-align: center; padding: 1rem 0;">
+      <h3 class="mb-0">
+        <i class="bi bi-person-circle me-2"></i>My Profile
+      </h3>
+    </div>
+    
+    <div class="card-body p-4" style="background-image: url('https://www.transparenttextures.com/patterns/blood-cell.png'); background-size: contain;">
+      <!-- Loading indicator -->
+      <div *ngIf="isLoading" class="text-center mb-4">
+        <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading your profile...</p>
+      </div>
+      <div *ngIf="profileForm.invalid" class="alert alert-danger">
+        Form is invalid. Issues:
+        <ul>
+          <li *ngIf="profileForm.get('firstname')?.invalid">First name is required</li>
+          <li *ngIf="profileForm.get('lastname')?.invalid">Last name is required</li>
+          <li *ngIf="profileForm.get('gender')?.invalid">Gender is required</li>
+          <li *ngIf="profileForm.get('email')?.invalid">Valid email is required</li>
+          <li *ngIf="profileForm.get('phone')?.invalid">Valid phone number is required</li>
+          <li *ngIf="profileForm.get('dateOfBirth')?.invalid">Date of birth is required</li>
+          <li *ngIf="profileForm.get('cityId')?.invalid">City is required</li>
+          <li *ngIf="profileForm.get('bloodTypeId')?.invalid">Blood type is required</li>
+        </ul>
+      </div>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="form-profile">
+        <div class="mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <input id="firstname" formControlName="firstname" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <input id="lastname" formControlName="lastname" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select id="gender" formControlName="gender" class="form-select" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" formControlName="email" type="email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input id="phone" formControlName="phone" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="dateOfBirth" class="form-label">Date of Birth</label>
+          <input id="dateOfBirth" formControlName="dateOfBirth" type="date" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="cityId" class="form-label">City</label>
+          <select id="cityId" formControlName="cityId" class="form-select" required>
+            <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="bloodTypeId" class="form-label">Blood Type</label>
+          <select id="bloodTypeId" formControlName="bloodTypeId" class="form-select" required>
+            <option *ngFor="let bloodType of bloodTypes" [value]="bloodType.id">{{ bloodType.type }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100">Update Profile</button>      </form>
+    </div>
+  </div>
+</div>

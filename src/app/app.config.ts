@@ -11,8 +11,6 @@ import { cityReducer, cityFeatureKey } from './store/cities/city.reducer';
 import { CityEffects } from './store/cities/city.effects';
 import { postReducer, postFeatureKey } from './store/posts/post.reducer';
 import { PostEffects } from './store/posts/post.effects';
-import { commentReducer, commentFeatureKey } from './store/comments/comment.reducer';
-import { CommentEffects } from './store/comments/comment.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,9 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       [cityFeatureKey]: cityReducer, 
       [postFeatureKey]: postReducer,
-      [commentFeatureKey] : commentReducer
     }), 
-    provideEffects([CityEffects, PostEffects, CommentEffects]),
+    provideEffects([CityEffects, PostEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
