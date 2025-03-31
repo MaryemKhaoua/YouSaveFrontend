@@ -5,67 +5,45 @@
   <div class="row">
     <!-- Main Content -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h1 class="h2 mb-4">Blood Donation Statistics</h1>
-
-      <!-- Statistics Cards -->
-      <div class="row">
-        <!-- Total Users Card -->
-        <div class="col-md-6 mb-4">
-          <div class="card bg-primary text-white">
-            <div class="card-body">
-              <h5 class="card-title">Total Users</h5>
-              <p class="card-text display-4">{{ totalUsers }}</p>
-              <p class="card-text">Registered donors and recipients</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Total Cities Card -->
-        <div class="col-md-6 mb-4">
-          <div class="card bg-success text-white">
-            <div class="card-body">
-              <h5 class="card-title">Total Cities</h5>
-              <p class="card-text display-4"></p>
-              <p class="card-text">Cities participating in the program</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Total Blood Types Card -->
-        <div class="col-md-6 mb-4">
-          <div class="card bg-info text-white">
-            <div class="card-body">
-              <h5 class="card-title">Total Blood Types</h5>
-              <p class="card-text display-4"></p>
-              <p class="card-text">Different blood types available</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Total Banned Users Card -->
-        <div class="col-md-6 mb-4">
-          <div class="card bg-danger text-white">
-            <div class="card-body">
-              <h5 class="card-title">Total Banned Users</h5>
-              <p class="card-text display-4"></p>
-              <p class="card-text">Users banned from the platform</p>
-            </div>
-          </div>
-        </div>
+      <!-- Blood Donation Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+        <h1 class="h2 text-danger">
+          <i class="fas fa-tint me-2"></i>Blood Donation Management
+        </h1>
       </div>
 
-      <!-- Charts or Additional Data -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h5 class="card-title">User Distribution by City</h5>
-            </div>
+      <!-- Statistics Cards Row -->
+      <div class="row mb-4">
+        <!-- Total Users Card -->
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card bg-danger bg-opacity-10 border-danger">
             <div class="card-body">
-              <!-- Add a chart or table here -->
-              <canvas id="userCityChart"></canvas>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h6 class="card-subtitle mb-2 text-danger">Total Users</h6>
+                  <h3 class="card-title">{{ totalUsers }}</h3>
+                </div>
+                <i class="fas fa-users fa-2x text-danger opacity-25"></i>
+              </div>
+              <p class="card-text small text-muted">Registered donors and staff</p>
             </div>
           </div>
+        </div>
+
+
+
+    
+
+      </div>
+
+      <!-- User Management Section -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-danger text-white">
+          <h3 class="h5 mb-0"><i class="fas fa-user-cog me-2"></i>User Management</h3>
+        </div>
+        <div class="card-body p-0">
+          <!-- User Component Integration -->
+          <app-user></app-user>
         </div>
       </div>
     </main>

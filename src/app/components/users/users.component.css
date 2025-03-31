@@ -31,3 +31,11 @@ body {
     background-color: #38c172;
     border-color: #38c172;
   }
+  .dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full viewport height */
+  }
+  
+  

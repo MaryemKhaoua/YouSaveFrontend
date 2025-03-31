@@ -1,56 +1,75 @@
-<!-- posts.component.html -->
 <app-navbar></app-navbar>
 
 <!-- Moving blood drops in the background -->
 <div class="background-drops">
-    <i class="fas fa-tint"></i>
-    <i class="fas fa-tint"></i>
-    <i class="fas fa-tint"></i>
-    <i class="fas fa-tint"></i>
-    <i class="fas fa-tint"></i>
+  <i class="fas fa-tint"></i>
+  <i class="fas fa-tint"></i>
+  <i class="fas fa-tint"></i>
+  <i class="fas fa-tint"></i>
+  <i class="fas fa-tint"></i>
 </div>
 
 <div class="container">
+  
+  <div *ngIf="isAuthenticated">
     <h1 class="text-center"><i class="fas fa-tint"></i> Create a New Post</h1>
     <form id="postForm" (ngSubmit)="savePost()">
-        <div class="form-group">
-            <label for="postContent"><i class="fas fa-edit"></i> Post Content</label>
-            <textarea 
-                class="form-control" 
-                id="postContent" 
-                rows="5" 
-                placeholder="Write your post content here..." 
-                [(ngModel)]="newPostContent" 
-                name="postContent" 
-                required>
-            </textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-plus"></i> {{ editingPost ? 'Update Post' : 'Create Post' }}
-        </button>
-        <button *ngIf="editingPost" type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+      <div class="form-group">
+        <label for="postContent"><i class="fas fa-edit"></i> Post Content</label>
+        <textarea
+          class="form-control"
+          id="postContent"
+          rows="5"
+          placeholder="Write your post content here..."
+          [(ngModel)]="newPostContent"
+          name="postContent"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-plus"></i> {{ editingPost ? 'Update Post' : 'Create Post' }}
+      </button>
+      <button *ngIf="editingPost" type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
     </form>
+  </div>
 
-    <div id="posts" class="mt-5">
-        <h2><i class="fas fa-list"></i> Posts</h2>
-        <div *ngFor="let post of (posts$ | async)" class="post-card">
-            <div class="post-header">
-              <img [src]="post.profilePicture || profilePictureUrl" alt="Profile Picture" class="profile-picture">
-              <strong>{{ post.createdBy }}</strong>
-              <span class="post-date">{{ formatDate(post.createdAt) }}</span>
-            </div>
-            <p>{{ post.content }}</p>
-            <div class="actions">
-              <a href="#"><i class="fas fa-heart"></i> Like</a>
-              <a href="#"><i class="fas fa-comment"></i> Comment</a>
-              <a href="#"><i class="fas fa-share"></i> Share</a>
-              <button *ngIf="loggedInUser === post.createdBy" (click)="editPost(post)" class="btn btn-warning btn-sm">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button *ngIf="loggedInUser === post.createdBy" (click)="deletePost(post.id)" class="btn btn-danger btn-sm">
-                <i class="fas fa-trash"></i> Delete
-              </button>
-            </div>
-          </div>
+  <!-- Latest Post Section -->
+  <div *ngIf="(posts$ | async) as posts">
+    <div *ngIf="posts.length > 0">
+      <h2><i class="fas fa-star"></i> Latest Post</h2>
+      <div class="post-card">
+        <div class="post-header">
+          <img [src]="posts[0].profilePicture || profilePictureUrl" alt="Profile Picture" class="profile-picture">
+          <strong>{{ posts[0].createdBy }}</strong>
+          <span class="post-date">{{ formatDate(posts[0].createdAt) }}</span>
+
+        </div>
+        <p>{{ posts[0].content }}</p>
+        
+        
+      </div>
+      
+
+      <h2><i class="fas fa-list"></i> All Posts</h2>
+      <div *ngFor="let post of posts.slice(1)" class="post-card">
+        <div class="post-header">
+          <img [src]="post.profilePicture || profilePictureUrl" alt="Profile Picture" class="profile-picture">
+          <strong>{{ post.createdBy }}</strong>
+          <span class="post-date">{{ formatDate(post.createdAt) }}</span>
+        </div>
+        <p>{{ post.content }}</p>
+        <div class="actions">
+          <a href="#"><i class="fas fa-heart"></i> Like</a>
+          <a href="#"><i class="fas fa-comment"></i> Comment</a>
+          <a href="#"><i class="fas fa-share"></i> Share</a>
+          <button *ngIf="loggedInUser === post.createdBy" (click)="editPost(post)" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button *ngIf="loggedInUser === post.createdBy" (click)="deletePost(post.id)" class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

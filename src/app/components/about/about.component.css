@@ -1,0 +1,25 @@
+body {
+    background-color: #f8f9fa;
+}
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://source.unsplash.com/1600x900/?blood,donation') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+}
+.section-title {
+    color: #dc3545; /* Blood donation red */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.btn-donate {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 30px;
+    transition: background 0.3s ease;
+}
+.btn-donate:hover {
+    background-color: #c82333;
+}

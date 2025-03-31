@@ -1,4 +1,3 @@
-// posts.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -26,6 +25,7 @@ export class PostsComponent implements OnInit {
     'https://cdn2.iconfinder.com/data/icons/circle-avatars-1/128/050_girl_avatar_profile_woman_suit_student_officer-512.png';
   loggedInUser: string | null = null;
   editingPost: Post | null = null;
+  isAuthenticated: boolean = false; // New property to track authentication status
 
   constructor(private store: Store, private authService: AuthService) {
     this.posts$ = this.store.select(selectFilteredPosts);
@@ -34,6 +34,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.loadPosts();
     this.loggedInUser = this.authService.getUserName();
+    this.isAuthenticated = this.loggedInUser !== null; // Check if user is authenticated
   }
 
   loadPosts(): void {
@@ -93,6 +94,6 @@ export class PostsComponent implements OnInit {
   }
 
   formatDate(date: Date | undefined): string {
-    return date ? format(date, 'MMMM d, yyyy h:mm a') : 'Unknown date';
+    return date ? format(date, 'MMM dd, yyyy hh:mm a') : '';
   }
 }

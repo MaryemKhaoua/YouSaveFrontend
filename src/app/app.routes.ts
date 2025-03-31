@@ -14,6 +14,8 @@ import { DonorComponent } from './components/donor/donor.component';
 import { SensabilisationComponent } from './components/sensabilisation/sensabilisation.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserComponent } from './components/users/users.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,6 +30,8 @@ export const routes: Routes = [
   { path: 'sensabilisation', component: SensabilisationComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'users', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] } },
+  { path: 'about', component: AboutComponent},
+  { path: 'contact', component: ContactComponent},
   { path: '**', redirectTo: '/home' }
 ];
 

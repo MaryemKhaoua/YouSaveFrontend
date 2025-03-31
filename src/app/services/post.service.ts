@@ -44,7 +44,6 @@ export class PostService {
   }
 
   updatePost(post: Post): Observable<Post> {
-    // const postWithCreatedAt = { ...post, createdAt: post.createdAt };
 
     if (post.id === undefined) {
       throw new Error('Post ID is undefined');

@@ -3,11 +3,14 @@
   import { NavbarComponent } from '../../layout/navbar/navbar.component';
   import { NgClass, NgFor, NgIf } from '@angular/common';
   import { FormsModule } from '@angular/forms';
+  import { SidebarComponent } from "../../layout/sidebar/sidebar.component";
+  import Swal from 'sweetalert2';
+
 
   @Component({
     selector: 'app-user',
     standalone:true,
-    imports:[NavbarComponent, NgClass, NgFor, NgIf, FormsModule],
+    imports: [NavbarComponent, NgClass, NgFor, NgIf, FormsModule, SidebarComponent],
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.css']
   })
@@ -60,28 +63,39 @@
     }
 
     updateUserRole(): void {
-  if (!this.selectedUser || !this.selectedRole) return;
-
-  const roleChangeRequest = { newRoleName: this.selectedRole };
-
-  this.userService.updateUserRole(this.selectedUser.id, roleChangeRequest).subscribe({
-    next: (response) => {
-      console.log(response); 
-      
-      const updatedUserIndex = this.users.findIndex(u => u.id === this.selectedUser.id);
-      if (updatedUserIndex !== -1) {
-        this.users[updatedUserIndex].roles = [this.selectedRole];
-      }
-      
-      this.closeRoleChangeModal();
-      
-      alert('Role updated successfully!');
-    },
-    error: (error) => {
-      console.error('Error updating user role:', error);
-      alert('Error updating role. Please try again.');
+      if (!this.selectedUser || !this.selectedRole) return;
+    
+      const roleChangeRequest = { newRoleName: this.selectedRole };
+    
+      this.userService.updateUserRole(this.selectedUser.id, roleChangeRequest).subscribe({
+        next: (response) => {
+          console.log(response); 
+    
+          const updatedUserIndex = this.users.findIndex(u => u.id === this.selectedUser.id);
+          if (updatedUserIndex !== -1) {
+            this.users[updatedUserIndex].roles = [this.selectedRole];
+          }
+    
+          this.closeRoleChangeModal();
+    
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Role updated successfully!',
+            confirmButtonColor: '#D32F2F'
+          });
+        },
+        error: (error) => {
+          console.error('Error updating user role:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Error updating role. Please try again.',
+            confirmButtonColor: '#D32F2F'
+          });
+        }
+      });
     }
-    });
-    }
+    
 
   }

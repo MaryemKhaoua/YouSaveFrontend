@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouSave - Don de Sang</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .hero-section {
+            background: rgb(255, 225, 225);
+            color: rgb(252, 3, 3);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .btn-donate {
+            background-color: #f70800;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+        }
+        /* .btn-donate:hover {
+            background-color: #c9302c;
+        } */
+        .section-title {
+            color: #d9534f;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .icon-img {
+            width: 80px;
+            height: 80px;
+        }
+        .mission-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+        footer {
+            background: rgb(255, 225, 225);
+            color: rgb(254, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <app-navbar></app-navbar>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section text-center">
+        <h1 class="display-4 fw-bold">YouSave - Sauvez des vies avec chaque goutte</h1>
+        <p class="lead">Un petit geste peut faire toute la différence. Donnez du sang, sauvez des vies.</p>
+        <a routerLink="/register" class="btn btn-donate mt-3">Faire un don maintenant</a>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="https://www.shutterstock.com/image-vector/blood-donation-concept-donor-donating-600nw-2251860529.jpg" 
+                     alt="Don de sang" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title">Qui sommes-nous ?</h2>
+                <p>
+                    Chez <strong>YouSave</strong>, nous croyons fermement que chaque personne a le pouvoir de sauver des vies.
+                    Notre mission est de faciliter le processus de don de sang en connectant les donneurs aux hôpitaux et
+                    aux patients dans le besoin.
+                </p>
+                <p>
+                    Grâce à notre plateforme, nous sensibilisons les communautés et encourageons les actions altruistes.
+                    Ensemble, nous pouvons faire une différence significative.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OUR MISSION SECTION -->
+    <div class="mission-section text-center">
+        <h2 class="section-title mb-4">Notre Mission</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/2096/2096642.png" class="icon-img mb-3" alt="Icône coeur">
+                <h4>Sauver des vies</h4>
+                <p>Chaque don compte et contribue à sauver jusqu'à trois vies.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="https://png.pngtree.com/element_our/20200609/ourlarge/pngtree-public-welfare-blood-donation-image_2227473.jpg" class="icon-img mb-3" alt="Icône volontaire">
+                <h4>Engagement communautaire</h4>
+                <p>Nous travaillons avec des bénévoles pour encourager le don de sang.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="https://cdn-icons-png.flaticon.com/512/2069/2069647.png" class="icon-img mb-3" alt="Icône hôpital">
+                <h4>Soutien aux hôpitaux</h4>
+                <p>Nous fournissons du sang aux hôpitaux et aux centres médicaux partenaires.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4">
+        <p>&copy; 2024 YouSave. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

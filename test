@@ -1,0 +1,50 @@
+classDiagram
+    class User {
+        -Long id
+        -String firstname
+        -String lastname
+        -String gender
+        -String email
+        -String password
+        -String phone
+        -LocalDate dateOfBirth
+        -City city
+        -BloodType bloodType
+        -Set~Role~ roles
+        -Set~Post~ posts
+    }
+
+    class Role {
+        -Long id
+        -String name
+        -Set~User~ users
+    }
+
+    class Post {
+        -long id
+        -String content
+        -String createdBy
+        -LocalDateTime createdAt
+        -User user
+        +prePersist()
+    }
+
+    class City {
+        -Long id
+        -String name
+        -List~User~ users
+    }
+
+    class BloodType {
+        -Long id
+        -String type
+        -int donationCount
+        -int userCount
+        -List~User~ users
+        +incrementUserCount()
+    }
+
+    User "1" *-- "1" City : city
+    User "1" *-- "1" BloodType : bloodType
+    User "n" -- "m" Role : roles
+    User "1" *-- "n" Post : posts
